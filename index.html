@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hollywood's Greatest Hits | Top 50 Movies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #fff; /* White background */
+            color: #000; /* Dark text for readability */
+            overflow-x: hidden;
+            padding-bottom: 60px;
+        }
+        
+        /* Removed background image and gradient */
+        .background-container {
+            display: none; /* Hidden completely for pure white background */
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px 10px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+            background-color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e50914;
+            text-shadow: 0 0 8px rgba(229, 9, 20, 0.2);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+        
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #e50914;
+        }
+        
+        .featured-movies {
+            padding: 40px 0;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #e50914;
+            text-shadow: 0 0 6px rgba(229, 9, 20, 0.15);
+            font-weight: bold;
+        }
+        
+        /* Movie Card */
+        .movie-card {
+            width: 100%;
+            max-width: 400px;
+            margin: 30px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #eee;
+        }
+        
+        .movie-card img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+            transition: transform 0.3s ease;
+        }
+        
+        .movie-card:hover img {
+            transform: scale(1.03);
+        }
+        
+        .movie-info {
+            width: 100%;
+            padding: 20px;
+            background: #fff;
+            text-align: center;
+        }
+        
+        .movie-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 18px;
+        }
+        
+        .movie-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        
+        .action-btn {
+            flex: 1;
+            max-width: 120px;
+            padding: 11px 0;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            font-weight: 500;
+        }
+        
+        .action-btn.play {
+            background: #e50914;
+            border: none;
+        }
+        
+        .action-btn.download {
+            background: #00A11E; /* ✅ New green color for Download button */
+            border: none;
+        }
+        
+        .action-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .action-btn.play:hover {
+            background: #f40612;
+        }
+        
+        .action-btn.download:hover {
+            background: #008018; /* ✅ Slightly darker green on hover */
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            border-top: 1px solid #eee;
+            color: #777;
+            font-size: 0.85rem;
+            background-color: #fafafa;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .movie-card {
+                max-width: 94%;
+                margin: 20px auto;
+            }
+            .movie-card img {
+                height: 400px;
+            }
+            .movie-title {
+                font-size: 1.25rem;
+            }
+            .action-btn {
+                font-size: 0.85rem;
+                padding: 9px 0;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">CINEMA+</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Movies</a></li>
+                    <li><a href="#">TV Shows</a></li>
+                    <li><a href="#">My List</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <section class="featured-movies">
+            <h2 class="section-title">TOP 50 MOVIES OF ALL TIME</h2>
+            <div id="moviesContainer">
+                <!-- Movies will be added here by JavaScript -->
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2023 CINEMA+ | All rights reserved. This is a demo website for entertainment purposes only.</p>
+            <p>Movies are the property of their respective owners.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Top Movies Data (Cleaned URLs)
+        const topMovies = [
+            { title: "I Am Legend 2", poster: "https://i.postimg.cc/hjDG6pdn/FB-IMG-1738825651326.jpg" },
+            { title: "Gray Matter", poster: "https://i.postimg.cc/1t7yTPS0/FB-IMG-1738825803245.jpg" },
+            { title: "Godzilla: Destroy All Monsters", poster: "https://i.postimg.cc/tJLpq5YY/FB-IMG-1738825893895.jpg" },
+            { title: "The Conjuring: A Last Rites", poster: "https://i.postimg.cc/xTz9sW4H/FB-IMG-1738854812734.jpg" },
+            { title: "Pirates of the Caribbean 6", poster: "https://i.postimg.cc/nhfpN0yW/FB-IMG-1738855018369.jpg" },
+            { title: "The Dark Knight Rises", poster: "https://i.postimg.cc/44KKg204/FB-IMG-1738857013772.jpg" },
+            { title: "The Matrix", poster: "https://i.postimg.cc/1RL85cxG/FB-IMG-1738857387270.jpg" },
+            { title: "Interstellar", poster: "https://i.postimg.cc/t4zJ5Ksk/FB-IMG-1738857607995.jpg" },
+            { title: "Inception", poster: "https://i.postimg.cc/hjNtvgYD/FB-IMG-1738895275870.jpg" },
+            { title: "The Lord of the Rings: The Return of the King", poster: "https://i.postimg.cc/kG8Xtzrx/FB-IMG-1738931287115.jpg" },
+            { title: "The Godfather", poster: "https://i.postimg.cc/m2YgLvy4/FB-IMG-1738931425337.jpg" },
+            { title: "The Shawshank Redemption", poster: "https://i.postimg.cc/28DCKHRK/FB-IMG-1738946304809.jpg" },
+            { title: "Pulp Fiction", poster: "https://i.postimg.cc/KcLZf6VT/FB-IMG-1738946521069.jpg" },
+            { title: "Forrest Gump", poster: "https://i.postimg.cc/zvn8fhW7/FB-IMG-1738980441701.jpg" },
+            { title: "Schindler's List", poster: "https://i.postimg.cc/Kjrhb2Ss/FB-IMG-1738980509380.jpg" },
+            { title: "The Silence of the Lambs", poster: "https://i.postimg.cc/sDsRcv5F/FB-IMG-1738980598858.jpg" },
+            { title: "Saving Private Ryan", poster: "https://i.postimg.cc/Wb8cfT7d/FB-IMG-1739028143914.jpg" },
+            { title: "The Good, the Bad and the Ugly", poster: "https://i.postimg.cc/zGPZ8765/FB-IMG-1739028902723.jpg" },
+            { title: "Casablanca", poster: "https://i.postimg.cc/zfbmBWYh/FB-IMG-1739029021124.jpg" },
+            { title: "The Godfather Part II", poster: "https://i.postimg.cc/GpZWs2b5/FB-IMG-1739029102312.jpg" },
+            { title: "Fight Club", poster: "https://i.postimg.cc/rmxvGkmF/FB-IMG-1739075018433.jpg" },
+            { title: "The Matrix Reloaded", poster: "https://i.postimg.cc/h48kfc62/FB-IMG-1739075060741.jpg" },
+            { title: "The Matrix Revolutions", poster: "https://i.postimg.cc/sDVtWbRs/FB-IMG-1739075084092.jpg" },
+            { title: "The Dark Knight", poster: "https://i.postimg.cc/YCPVJ9LC/FB-IMG-1739107597721.jpg" },
+            { title: "The Avengers", poster: "https://i.postimg.cc/D05p5yKF/FB-IMG-1739107729196.jpg" },
+            { title: "Avengers: Age of Ultron", poster: "https://i.postimg.cc/L66b5fzs/FB-IMG-1739120200903.jpg" },
+            { title: "Avengers: Infinity War", poster: "https://i.postimg.cc/FR4P4JrN/FB-IMG-1739120569542.jpg" },
+            { title: "Avengers: Endgame", poster: "https://i.postimg.cc/kGjwK1xg/FB-IMG-1739120628247.jpg" },
+            { title: "Iron Man", poster: "https://i.postimg.cc/XNxsRJT6/FB-IMG-1739120834629.jpg" },
+            { title: "Iron Man 2", poster: "https://i.postimg.cc/tCTBpbjZ/FB-IMG-1739121106669.jpg" },
+            { title: "Iron Man 3", poster: "https://i.postimg.cc/4ds1MkP3/FB-IMG-1739121406814.jpg" },
+            { title: "Captain America: The First Avenger", poster: "https://i.postimg.cc/cL3ML45H/FB-IMG-1739156074576.jpg" },
+            { title: "Captain America: The Winter Soldier", poster: "https://i.postimg.cc/W46G0YVc/FB-IMG-1739156113918.jpg" },
+            { title: "Captain America: Civil War", poster: "https://i.postimg.cc/xC6L4kqs/FB-IMG-1739156165601.jpg" },
+            { title: "Thor", poster: "https://i.postimg.cc/2y3nRzZC/FB-IMG-1739156235018.jpg" },
+            { title: "Thor: The Dark World", poster: "https://i.postimg.cc/05HpGJTj/FB-IMG-1739179506215.jpg" },
+            { title: "Thor: Ragnarok", poster: "https://i.postimg.cc/xdYHjGzx/FB-IMG-1739179570409.jpg" },
+            { title: "Black Widow", poster: "https://i.postimg.cc/8P6rhXdX/FB-IMG-1739179599409.jpg" },
+            { title: "Spider-Man: Homecoming", poster: "https://i.postimg.cc/qRDCG9ZS/FB-IMG-1739179692595.jpg" },
+            { title: "Spider-Man: Far From Home", poster: "https://i.postimg.cc/qq9hP2rG/FB-IMG-1739191227356.jpg" },
+            { title: "Guardians of the Galaxy", poster: "https://i.postimg.cc/dVRkf7x8/FB-IMG-1739191285643.jpg" },
+            { title: "Guardians of the Galaxy Vol. 2", poster: "https://i.postimg.cc/rsytGqJS/FB-IMG-1739191345491.jpg" },
+            { title: "Guardians of the Galaxy Vol. 3", poster: "https://i.postimg.cc/Df5Gvbv5/FB-IMG-1739203193487.jpg" },
+            { title: "Doctor Strange", poster: "https://i.postimg.cc/MKFjR2jQ/FB-IMG-1739203253612.jpg" },
+            { title: "Doctor Strange in the Multiverse of Madness", poster: "https://i.postimg.cc/nh99GRvw/FB-IMG-1739203302386.jpg" },
+            { title: "Ant-Man", poster: "https://i.postimg.cc/G3MBwwK5/FB-IMG-1739203368623.jpg" },
+            { title: "Ant-Man and the Wasp", poster: "https://i.postimg.cc/prdphqWC/FB-IMG-1739276647399.jpg" },
+            { title: "Ant-Man and the Wasp: Quantumania", poster: "https://i.postimg.cc/B6nqMbrQ/FB-IMG-1739287232948.jpg" },
+            { title: "Black Panther", poster: "https://i.postimg.cc/B6nqMbrQ/FB-IMG-1739287232948.jpg" },
+            { title: "Black Panther: Wakanda Forever", poster: "https://i.postimg.cc/B6nqMbrQ/FB-IMG-1739287232948.jpg" }
+        ];
+
+        // CPA Link - Cleaned up (trimmed spaces)
+        const cpaLink = "https://unlockcontent.net/cl/i/po9rk4";
+
+        // Create one movie card at a time
+        const container = document.getElementById('moviesContainer');
+        
+        topMovies.forEach((movie, index) => {
+            const movieCard = document.createElement('div');
+            movieCard.className = 'movie-card';
+            
+            movieCard.innerHTML = `
+                <!-- Poster is now UNCLICKABLE (no <a> wrapper) -->
+                <img src="${movie.poster.trim()}" alt="${movie.title}" onerror="this.src='https://via.placeholder.com/300x500/f5f5f5/aaa?text=No+Image'">
+                <div class="movie-info">
+                    <div class="movie-title">${movie.title}</div>
+                    <div class="movie-actions">
+                        <!-- CPA link ONLY on buttons -->
+                        <a href="${cpaLink}" target="_blank" class="action-btn play">Play</a>
+                        <a href="${cpaLink}" target="_blank" class="action-btn download">Download</a>
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(movieCard);
+        });
+    </script>
+</body>
+</html>
